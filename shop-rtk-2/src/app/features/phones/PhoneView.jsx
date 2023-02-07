@@ -21,8 +21,10 @@ function PhoneView() {
           <span className='count'> {phones}</span>
         </p>
         <div className='btnContainer'>
-          <button onClick={() => dispatch(phonesAction(phoneNum))}>Acheter</button>
+          <button onClick={() => dispatch(phonesAction(+phoneNum))}>Acheter</button>
           <input type="number" 
+                  min="1"
+                  max={phones}
                   value={phoneNum} 
                   onChange={(e) => setPhoneNum(e.target.value)} />
         </div>
@@ -34,8 +36,10 @@ function PhoneView() {
           <span className='count'> {tablets}</span>
         </p>
         <div className='btnContainer'>
-          <button onClick={() => dispatch(tabletsAction(tabletNum))}>Acheter</button>
+          <button onClick={() => dispatch(tabletsAction(+tabletNum))}>Acheter</button>
           <input type="number" 
+                  min="1"
+                  max={tablets}
                   value={tabletNum} 
                   onChange={(e) => setTabletNum(e.target.value)} />
         </div>

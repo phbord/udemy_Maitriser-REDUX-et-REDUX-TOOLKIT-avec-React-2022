@@ -16,8 +16,10 @@ function TvView() {
         <span className='count'> {tvs}</span>
       </p>
       <div className='btnContainer'>
-        <button onClick={() => dispatch(tvsAction(tvNum))}>Acheter</button>
+        <button onClick={() => dispatch(tvsAction(+tvNum))}>Acheter</button>
         <input type="number" 
+                min="1"
+                max={tvs}
                 value={tvNum} 
                 onChange={(e) => setTvNum(e.target.value)} />
       </div>
