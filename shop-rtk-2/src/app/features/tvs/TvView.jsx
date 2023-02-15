@@ -8,6 +8,11 @@ function TvView() {
   const dispatch = useDispatch()
   const [tvNum, setTvNum] = useState('')
 
+  const handleDispatchTv = () => {
+    dispatch(tvsAction(+tvNum))
+    setTvNum(1)
+  }
+
   return (
     <div className='container'>
       <img src={tv} alt="tv" />
@@ -15,14 +20,18 @@ function TvView() {
         Disponibilité : 
         <span className='count'> {tvs}</span>
       </p>
-      <div className='btnContainer'>
-        <button onClick={() => dispatch(tvsAction(+tvNum))}>Acheter</button>
-        <input type="number" 
-                min="1"
-                max={tvs}
-                value={tvNum} 
-                onChange={(e) => setTvNum(e.target.value)} />
-      </div>
+      {
+        tvs > 0 && (
+          <div className='btnContainer'>
+            <button onClick={handleDispatchTv}>Acheter</button>
+            <input type="number" 
+                    min="1"
+                    max={tvs}
+                    value={tvNum} 
+                    onChange={(e) => setTvNum(e.target.value)} />
+          </div>
+        )
+      }
     </div>
   )
 }

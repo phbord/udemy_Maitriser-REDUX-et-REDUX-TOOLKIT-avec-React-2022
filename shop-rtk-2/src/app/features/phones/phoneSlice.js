@@ -26,7 +26,12 @@ const phoneSlice = createSlice({
   extraReducers: (builder) => {
     // CAS :  Si achat de tv => décrémentation du stock de téléphones
     builder.addCase(tvActions, (state, action) => {
-      state.phones -= action.payload
+      if (action.payload <= state.phones) {
+        state.phones -= action.payload
+      }
+      else if (action.payload > state.phones) {
+        state.phones = 0
+      }
     })
   }
   // OU (autre méthode)

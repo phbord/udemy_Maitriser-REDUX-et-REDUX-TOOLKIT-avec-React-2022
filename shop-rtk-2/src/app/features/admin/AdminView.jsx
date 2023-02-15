@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import StockInfos from '../../../components/StockInfos'
 import { addPhones as addPhonesAction, addTablets as addTabletsAction } from '../phones/phoneSlice'
+import { addTvs as addTvsAction } from '../tvs/tvSlice'
 
 const container = {
   width: '300px',
@@ -17,6 +18,7 @@ const btnContainer = {
 function AdminView() {
   const [phones, setPhones] = useState(1)
   const [tablets, setTablets] = useState(1)
+  const [tv, setTv] = useState(1)
   const { phone, television } = useSelector((state) => state)
   const dispatch = useDispatch()
 
@@ -45,8 +47,10 @@ function AdminView() {
                   stock={television.tvs} />
       <div style={btnContainer}>
         <input type="number"
-                min="1" />
-        <button>Augmenter stock</button>
+                min="1"
+                value={tv}
+                onChange={(e) => setTv(e.target.value)} />
+        <button onClick={() => dispatch(addTvsAction(+tv))}>Augmenter stock</button>
       </div>
     </div>
   )
