@@ -1,6 +1,9 @@
-import React from 'react'
+import { useDispatch } from "react-redux"
+import { deleteBook as deleteBookAction } from "../features/library/librarySlice" 
 
 const List = ({data}) => {
+  const dispatch = useDispatch()
+
   return (
     <ul className='list-group'>
       {
@@ -11,12 +14,12 @@ const List = ({data}) => {
                   key={data.id}>
                 <span>Titre : <strong>{data.title}</strong></span>
                 <span>Auteur : <strong>{data.author}</strong></span>
-                <button className='btn btn-danger'>X</button>
+                <button className='btn btn-danger' 
+                        onClick={() => dispatch(deleteBookAction(data.id))}>X</button>
               </li>
             )
           })
-          : <p className='text-center' 
-                onClick={() => {}}>Aucune date à afficher</p>
+          : <p className='text-center'>Aucune date à afficher</p>
       }
     </ul>
   )

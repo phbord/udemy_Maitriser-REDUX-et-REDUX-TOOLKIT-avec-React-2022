@@ -20,9 +20,17 @@ const librarySlice = createSlice({
       const newBook = { id: uuiv4(), title: action.payload.title, author: action.payload.author }
       state.books.push(newBook)
       updateLocalStorage(state.books)
+    },
+    deleteBook: (state, action) => { // Action {type: 'library/deleteBook', payload: []}
+      state.books = state.books.filter(book => book.id !== action.payload)
+      updateLocalStorage(state.books)
+    },
+    deleteAllBooks: (state) => { // Action {type: 'library/deleteAllBooks', payload: []}
+      state.books = []
+      updateLocalStorage(state.books)
     }
   }
 })
 
 export default librarySlice.reducer
-export const { addBook, getLocalStorageData } = librarySlice.actions
+export const { addBook, deleteBook, deleteAllBooks, getLocalStorageData } = librarySlice.actions

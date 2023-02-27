@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import Jumbotron from '../../components/Jumbotron'
 import { addBook as addBookAction, getLocalStorageData as getLocalStorageDataAction } from './librarySlice'
 import List from '../../common/List'
+import DeleteAllBtn from '../../common/DeleteAllBtn'
 
 const LibraryView = () => {
   const libraryData = useSelector(state => state.library.books)
@@ -57,6 +58,9 @@ const LibraryView = () => {
       </Jumbotron>
       <main className='container'>
         <List data={libraryData} />
+        {
+          libraryData.length > 0 && <DeleteAllBtn />
+        }
       </main>
     </>
   )
